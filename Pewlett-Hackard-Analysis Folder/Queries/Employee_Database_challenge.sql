@@ -1,3 +1,4 @@
+--Retirement_Titles DF
 SELECT e.emp_no, 
         e.first_name,
         e.last_name,
@@ -12,25 +13,29 @@ WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 ORDER BY emp_no
 ;
 -- Use Dictinct with Orderby to remove duplicate rows
-SELECT DISTINCT ON (______) _____,
-______,
-______,
-______
+--SELECT DISTINCT ON (______) _____,
+--______,
+--______,
+--______
 
-INTO nameyourtable
-FROM _______
-ORDER BY _____, _____ DESC;
+--INTO nameyourtable
+--FROM _______
+--ORDER BY _____, _____ DESC;
+--
+--Create Unique_Titles DF
 SELECT DISTINCT ON (emp_no) emp_no, first_name, last_name, title
 INTO unique_titles
 FROM retirement_titles
 ORDER BY emp_no, from_date DESC
 ;
+--Create Retiring_Titles DF
 SELECT COUNT(title) count, title
 INTO retiring_titles
 FROM unique_titles
 GROUP BY (title) 
 ORDER BY count DESC
 ;
+--Current Retirement Titles
 SELECT DISTINCT ON (emp_no)
         ce.emp_no, 
         ce.first_name,
@@ -44,6 +49,7 @@ INNER JOIN titles as ti
 ON ce.emp_no = ti.emp_no
 ORDER BY emp_no, from_date DESC
 ;
+--Mentorship_Eligibility DF 
 SELECT DISTINCT ON (emp_no)
         e.emp_no, 
         e.first_name,
